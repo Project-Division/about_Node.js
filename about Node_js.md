@@ -132,3 +132,26 @@ console.dir(process.env);
 
 ### - process.exit(코드)
    - 실행중인 노드 프로세스 종료
+
+<br><br>
+***
+
+# 5. 예외 처리
+
+```javascript
+setInterval(() => {
+    try {
+        throw new Error("오류");
+    } catch (err) {
+        console.error(err);
+    }
+}, 1000);
+```
+
+```
+Error: 오류
+    at Timeout._onTimeout (C:\Users\kks00\Desktop\untitled\tests\error.js:3:15)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+...
+```
