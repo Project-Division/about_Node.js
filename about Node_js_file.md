@@ -83,4 +83,44 @@ fs.writeFile("./files/written.txt", "테스트", (err) => {
 > ### 파일
 
 ### 1. fs.unlink(경로, 콜백)
-### 2. fs.rename(경로, 콜백)
+### 2. fs.rename(기존 경로, 새 경로, 콜백)
+
+***
+
+<br>
+
+```javascript
+const fs = require("fs");
+
+fs.access("./test_dir", fs.constants.R_OK | fs.constants.W_OK | fs.constants.F_OK, (err) => {
+    if (err) {
+        console.log("디렉토리가 존재하지 않습니다.");
+
+        fs.mkdir("./test_dir", (err) => {
+            if (err) {
+                console.log("디렉토리를 생성할 수 없습니다.");
+                throw err;
+            }
+
+            console.log("디렉토리를 생성했습니다.");
+
+            fs.writeFile("./test_dir/test_file.txt", "테스트", (err) => {
+                console.log("파일을 생성하였습니다.");
+
+                fs.rename("./test_dir/test_file.txt", "./test_dir/test_file1.txt", (err) => {
+                    console.log("파일 이름을 test_file에서 test_file1로 변경하였습니다.");
+                })
+            });
+        });
+    } else {
+        console.log("디렉토리가 이미 존재합니다.")
+    }
+});
+```
+
+```
+디렉토리가 존재하지 않습니다.
+디렉토리를 생성했습니다.
+파일을 생성하였습니다.
+파일 이름을 test_file에서 test_file1로 변경하였습니다.
+```
