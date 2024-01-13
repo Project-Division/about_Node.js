@@ -62,3 +62,25 @@ fs.writeFile("./files/written.txt", "테스트", (err) => {
 ### 1. let data = fs.readFileSync(파일경로)
    - 읽은 데이터를 data 변수에 저장
    - 콜백 함수를 인자로 받지 않음
+
+<br>
+
+## 4. 기타 메서드들
+
+### 1. fs.access(경로, 옵션, 콜백)
+   - 폴더나 파일에 접근할 수 있는지 확인
+
+***
+
+> ### 디렉토리
+
+### 1. fs.readdir(경로, 콜백)
+### 2. fs.mkdir(경로, 콜백)
+### 3. fs.rmdir(경로, 콜백)
+
+***
+
+> ### 파일
+
+### 1. fs.unlink(경로, 콜백)
+### 2. fs.rename(경로, 콜백)
