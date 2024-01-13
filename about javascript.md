@@ -79,6 +79,7 @@ fantastic
 
 > ## 장점
  ### 1. 기존 함수 사용
+ #### this로 현재 객체의 name 참조 불가능
 ```javascript
 var obj = {
     name: 'zero',
@@ -95,12 +96,13 @@ obj.print_names();
 ```
 
 ```markdown
-undefined nero // this로 현재 객체의 name 참조 불가능
+undefined nero
 undefined hero
 undefined xero
 ```
 
 ### 2. 화살표 함수 사용
+#### this로 현재 객체의 name 참조 가능
 ```javascript
 var obj = {
     name: 'zero',
@@ -117,7 +119,7 @@ obj.print_names();
 ```
 
 ```markdown
-zero nero // this로 현재 객체의 name 참조 가능
+zero nero
 zero hero
 zero xero
 ```
@@ -158,3 +160,92 @@ node = nodejs, obj = [object Object], bool = true
 ***
 
 # 6. 프로미스
+### 콜백 함수 대신 사용
+
+### 1. 
+```javascript
+const condition = true;
+
+const p = new Promise((resolve, reject) => {
+    if (condition)
+        resolve("성공");
+    else
+        reject("실패");
+});
+
+p.then((message) => {
+    console.log(message);
+})
+.catch((error) => {
+    console.error(error);
+})
+```
+
+```
+성공
+```
+
+### 2. 여러 개를 한번에 실행 (Promise.all)
+
+```javascript
+const condition = true;
+
+const p1 = new Promise((resolve, reject) => {
+    if (condition)
+        resolve("성공1");
+    else
+        reject("실패1");
+});
+
+const p2 = new Promise((resolve, reject) => {
+    if (condition)
+        resolve("성공2");
+    else
+        reject("실패2");
+});
+
+Promise.all([p1, p2]).then((message) => {
+    console.log(message);
+})
+.catch((error) => {
+    console.error(error);
+})
+```
+
+```
+[ '성공1', '성공2' ]
+```
+
+<br><br>
+***
+
+# 7. async / await
+
+### async 키워드로 비동기로 처리할 함수 정의, setTimeout으로 스레드 생성
+### async 함수 내에서 다른 async 함수를 호출할 때 함수 이름 앞에 await 사용
+
+```javascript
+const f = async () => {
+  var t = Date.now();
+  while (t + 2000 > Date.now())
+    continue;
+  return "2초 경과";
+};
+
+async function _main() {
+    console.log("start");
+
+    var msg = await f();
+    console.log(msg);
+
+    console.log("end");
+}
+
+setTimeout(_main, 0);
+```
+
+```
+start
+2초 경과
+end
+```
