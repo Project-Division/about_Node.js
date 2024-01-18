@@ -91,7 +91,7 @@ app.set("port", 3000);
 
 app.use((req, res, next) => {
     console.log("요청이 실행될 때 마다 실행됨");
-    next();
+    next(); // 다른 등록된 미들웨어를 호출하기 위해 사용
 });
 
 ...
@@ -127,22 +127,30 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).send(err.message);
-    next();
-}, (req, res, next) => {
-    console.log("요청이 실행될 때 마다 실행됨");
-    next();
 });
 ```
 
-### 핸들러를 지정해두지 않은 링크로 들어갈 시 404오류 발생
+### 지정되지 않은 라우터로 요청 발생할 시 404오류 발생
+
+![사진](https://media.discordapp.net/attachments/1197382009174097990/1197402197256851476/image.png?ex=65bb22b2&is=65a8adb2&hm=1b2ac1f64c3482584667e9af50cb8e17c6fbe538c125eb7d639e84defc063ac3&=&format=webp&quality=lossless&width=771&height=459)
 
 ![사진](https://media.discordapp.net/attachments/1197382009174097990/1197382036877484063/image.png?ex=65bb0feb&is=65a89aeb&hm=3d896136a3d0aa740b5c515de69495a762a529cd312b1ea6740c730bac00153b&=&format=webp&quality=lossless&width=1335&height=402)
 
 <br><br>
 ***
 
-#
+# static
+### 정적인 파일들을 제공하는 라우터
+
+> public 라우터를 프로젝트의 public 폴더의 파일에 접근하도록 설정
+
+```javascript
+app.use("/public", express.static(path.join(__dirname, "public")));
+```
+
+![사진](https://media.discordapp.net/attachments/1197382009174097990/1197402633774829618/image.png?ex=65bb231a&is=65a8ae1a&hm=1ee3daf27a0e29263f00ee1a2d2a920c21ab2f3f3eacfe45211216ce51efc696&=&format=webp&quality=lossless&width=1335&height=523)
+
+![사진](https://media.discordapp.net/attachments/1197382009174097990/1197402779040370688/image.png?ex=65bb233d&is=65a8ae3d&hm=f28eeeafb195131d1fd17adfeb5548b6a1be461434a78c8efae38ebbea1e22fe&=&format=webp&quality=lossless&width=640&height=640)
 
 <br><br>
 ***
-# 템플릿 엔진
