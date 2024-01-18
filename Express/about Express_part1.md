@@ -57,7 +57,7 @@ app.listen(app.get("port"), () => {
 ```
 npm start
 ```
-![사진](https://media.discordapp.net/attachments/976023220769677342/1197366561317593188/image.png?ex=65bb0182&is=65a88c82&hm=5d5a59f803885ede639636ecc79759af01eb46aa1cc90b283611ef39c6833fd8&=&format=webp&quality=lossless&width=896&height=650)
+![사진](https://media.discordapp.net/attachments/1197382009174097990/1197403910663585842/image.png?ex=65bb244a&is=65a8af4a&hm=1778fb2e15e962df4b64cc49ae83a25c00af22488906c0dd085be545c7da1bbc&=&format=webp&quality=lossless&width=925&height=485)
 
 > 구동된 웹
 
