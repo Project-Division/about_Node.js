@@ -36,7 +36,7 @@ npm i -D nodemon
 ***
 
 # express로 웹서버 구동
-
+> 코드
 ```javascript
 const express = require('express');
 
@@ -51,6 +51,8 @@ app.listen(app.get("port"), () => {
     console.log(`${app.get("port")} 번 포트에서 대기중.`);
 });
 ```
+
+> 구동된 웹서버
 
 ![사진](https://media.discordapp.net/attachments/976023220769677342/1197365506068459551/image.png?ex=65bb0086&is=65a88b86&hm=4b93e405718576938d9acb07c56e8001e0c65975d488b0736b44f155f61d2375&=&format=webp&quality=lossless&width=1102&height=650)
 
