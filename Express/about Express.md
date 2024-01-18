@@ -95,9 +95,9 @@ app.use((req, res, next) => {
 });
 
 ...
+
 ```
 
-### 요청이 있을 때 마다 콘솔에 로그가 출력됨
 ![사진](https://media.discordapp.net/attachments/976023220769677342/1197368131711152261/image.png?ex=65bb02f8&is=65a88df8&hm=ce689142ffc2893037c042244fe778ca32816658a22a9338eeac56dad9d696ad&=&format=webp&quality=lossless&width=1120&height=316)
 
 
@@ -118,27 +118,31 @@ app.post("/test", (req, res, next) => {
 > 오류 발생 시 미들웨어
 
 ```javascript
-app.get("/", (req, res, next) => {
-    console.log("GET / 요청에서 실행됨");
-    throw new Error("err"); <<
-    res.send("Hello, World!");
-    next();
+app.use((req, res, next) => {
+    const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+    err.status = 404;
+    next(error);
 });
 
 app.use((err, req, res, next) => {
-    console.error(err); <<
-    res.status(500).send(err.message); <<
+    console.error(err);
+    res.status(500).send(err.message);
     next();
 }, (req, res, next) => {
     console.log("요청이 실행될 때 마다 실행됨");
     next();
 });
 ```
-![사진](https://media.discordapp.net/attachments/976023220769677342/1197376367440961567/image.png?ex=65bb0aa4&is=65a895a4&hm=43612ccc4f6c5fbd70e00932ef946af9e162d8cdba2d4780e96c9988996ae8da&=&format=webp&quality=lossless&width=737&height=419)
 
-![사진](https://media.discordapp.net/attachments/976023220769677342/1197376207092719688/image.png?ex=65bb0a7d&is=65a8957d&hm=06a50b197db098fd8d2e7d700045fa5a5a919816b24f3e645569ca1a1922931e&=&format=webp&quality=lossless&width=1335&height=429)
+### 핸들러를 지정해두지 않은 링크로 들어갈 시 404오류 발생
+
+![사진](https://media.discordapp.net/attachments/1197382009174097990/1197382036877484063/image.png?ex=65bb0feb&is=65a89aeb&hm=3d896136a3d0aa740b5c515de69495a762a529cd312b1ea6740c730bac00153b&=&format=webp&quality=lossless&width=1335&height=402)
 
 <br><br>
 ***
 
-# 
+#
+
+<br><br>
+***
+# 템플릿 엔진
