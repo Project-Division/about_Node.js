@@ -71,19 +71,19 @@ npm start
 
 ### 요청과 응답의 중간에 위치하여 요청과 응답을 조작하여 기능을 추가하는 방법
 
-> 미들웨어 실행 범위
+> 라우터
 
 |코드|작동범위|
 |---|---|
 |app.use(미들웨어 함수)|모든 요청|
-|app.use('/abc', 미들웨어 함수)|abc로 시작되는 요청|
+|app.use('/abc', 미들웨어 함수)|/abc 주소로의 모든 HTTP 요청에 대해 실행|
 |app.use((err, req, res, next) => {})|오류 발생 시 실행|
-|app.post('/abc', 미들웨어 함수)|abc로 시작되는 POST 요청|
-
+|app.get('abc', 미들웨어 함수)| /abc 주소로의 GET 요청일 때 실행|
+|app.post('/abc', 미들웨어 함수)|/abc 주소로의 POST 요청일 때 실행|
 
 <br>
 
-> 모든 요청 미들웨어
+> 모든 요청 라우팅
 
 ```javascript
 const app = express();
@@ -91,7 +91,7 @@ app.set("port", 3000);
 
 app.use((req, res, next) => {
     console.log("요청이 실행될 때 마다 실행됨");
-    next(); // 다른 등록된 미들웨어를 호출하기 위해 사용
+    next(); // 다른 등록된 라우터를 호출하기 위해 사용
 });
 
 ...
@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 
 <br>
 
-> POST 요청 미들웨어
+> POST 요청 라우팅
 
 ```javascript
 app.post("/test", (req, res, next) => {
@@ -114,6 +114,8 @@ app.post("/test", (req, res, next) => {
 ![사진](https://media.discordapp.net/attachments/976023220769677342/1197371131867439154/image.png?ex=65bb05c3&is=65a890c3&hm=eebece98ec1bb3324b3a1605aa8ee51741c590371ee4ab9c33547edfdf06f12f&=&format=webp&quality=lossless&width=1089&height=279)
 
 ![사진](https://media.discordapp.net/attachments/976023220769677342/1197371437569278042/image.png?ex=65bb060c&is=65a8910c&hm=a046a3e724b19031042227df0fd9c21b3221fa3efc64e26a3b0c3cecde2bce36&=&format=webp&quality=lossless&width=628&height=214)
+
+<br>
 
 > 오류 발생 시 미들웨어
 
@@ -136,6 +138,27 @@ app.use((err, req, res, next) => {
 
 ![사진](https://media.discordapp.net/attachments/1197382009174097990/1197382036877484063/image.png?ex=65bb0feb&is=65a89aeb&hm=3d896136a3d0aa740b5c515de69495a762a529cd312b1ea6740c730bac00153b&=&format=webp&quality=lossless&width=1335&height=402)
 
+<br>
+
+> 파라미터
+
+```javascript
+...
+
+app.get("/login/:id", (req, res, next) => {
+    console.log(`id = ${req.params.id}`);
+    console.dir(req.query);
+    res.send('');
+});
+
+...
+```
+
+![사진](https://media.discordapp.net/attachments/1196215613144703076/1198441068115533934/image.png?ex=65beea38&is=65ac7538&hm=37dfb5a4f474a71b5a8db046c1c88b02609ecd0399303517e3fe4634b56a16e0&=&format=webp&quality=lossless&width=979&height=291)
+
+![사진](https://media.discordapp.net/attachments/1196215613144703076/1198441276853452960/image.png?ex=65beea6a&is=65ac756a&hm=88c230be118e81250f7a0588c0b20c3e0160ac5ec6003d7a165333ff49e4adce&=&format=webp&quality=lossless&width=621&height=127)
+
+
 <br><br>
 ***
 
@@ -151,6 +174,3 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 ![사진](https://media.discordapp.net/attachments/1197382009174097990/1197402633774829618/image.png?ex=65bb231a&is=65a8ae1a&hm=1ee3daf27a0e29263f00ee1a2d2a920c21ab2f3f3eacfe45211216ce51efc696&=&format=webp&quality=lossless&width=1335&height=523)
 
 ![사진](https://media.discordapp.net/attachments/1197382009174097990/1197402779040370688/image.png?ex=65bb233d&is=65a8ae3d&hm=f28eeeafb195131d1fd17adfeb5548b6a1be461434a78c8efae38ebbea1e22fe&=&format=webp&quality=lossless&width=640&height=640)
-
-<br><br>
-***
