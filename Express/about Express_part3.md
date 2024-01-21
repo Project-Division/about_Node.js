@@ -71,3 +71,53 @@ app.post("/cookies_test", (req, res, next) => {
 ***
 
 ## 3. express-session
+
+#### 세션 관리용 미들웨어
+#### 생성된 req.session 객체에 값을 대입하거나 삭제하여 이용
+
+<br>
+
+> 설치
+```
+npm i express-session
+```
+
+<br>
+
+```javascript
+var session = require('express-session');
+
+app.use(session({
+    resave: false, // 요청 왔을 때 세션에 변경사항 없어도 다시 저장
+    saveUninitialized: true, // 저장할 내역 없어도 저장
+    secret: process.env.COOKIE_SECRET_KEY,
+    cookie: {
+        httpOnly: true, // 클라이언트에서 쿠키 확인 불가능
+        secure: false // https 사용 시 true
+    }
+}));
+
+...
+app.use((req, res, next) => {
+    console.log("요청이 실행될 때 마다 실행됨");
+
+    console.log(`현재 세션 id = ${req.sessionID}`);
+    console.dir(req.session);
+
+    next();
+});
+...
+```
+
+```
+현재 세션 id = zZ5uf2Re2I8dXCcEB6x8M82YqcUF4cjs
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    secure: false
+  }
+}
+```
