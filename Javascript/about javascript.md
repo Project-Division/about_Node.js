@@ -249,3 +249,39 @@ start
 2초 경과
 end
 ```
+
+<br><br>
+***
+# 8. foreach, for ... in
+
+> foreach
+### array 객체에만 사용 가능
+
+```javascript
+var arr = ["apple", "banana", "apple"];
+arr.forEach((name) => { console.log(name); });
+```
+
+```
+apple
+banana
+apple
+```
+
+<br>
+
+> for ... in
+
+### 객체의 key 값에 접근
+
+```javascript
+var obj = {'key1': 'value1', 'key2': 'value2'};
+for (var key in obj) {
+    console.log(key, obj[key]);
+}
+```
+
+```
+key1 value1
+key2 value2
+```
