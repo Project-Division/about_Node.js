@@ -66,3 +66,8 @@ app.post("/cookies_test", (req, res, next) => {
 ![사진](https://media.discordapp.net/attachments/1196215613144703076/1198481462723358780/image.png?ex=65bf0fd7&is=65ac9ad7&hm=84b1b12b174778d75af5e03b32eaeffc7620764965d01f38a734424e92f7cc08&=&format=webp&quality=lossless&width=1299&height=653)
 
 ![사진](https://media.discordapp.net/attachments/1196215613144703076/1198481650351353896/image.png?ex=65bf1004&is=65ac9b04&hm=34d0adb2b255b9e97c004028ae15ef9642110a6e00e8ad2053e64af439383214&=&format=webp&quality=lossless&width=720&height=122)
+
+<br><br>
+***
+
+## 3. express-session

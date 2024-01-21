@@ -108,8 +108,9 @@ iv = setInterval(f, 1000);
 
 # 4. process 객체
 
-### - process.env 객체
-   - 시스템의 환경변수
+## - process.env 객체
+
+>시스템의 환경변수
 
 ```javascript
 console.dir(process.env);
@@ -130,7 +131,33 @@ console.dir(process.env);
 ...
 ```
 
-### - process.exit(코드)
+<br>
+
+> dotenv 패키지
+
+### .env 파일을 읽어 process.env 객체에 넣음
+
+- .env
+```
+SECRET_KEY=test_key
+```
+
+- env.js
+```javascript
+require("dotenv").config();
+console.dir(process.env);
+```
+
+```
+{
+  SECRET_KEY: 'test_key',
+  ...
+}
+```
+
+<br>
+
+## - process.exit(코드)
    - 실행중인 노드 프로세스 종료
 
 <br><br>
