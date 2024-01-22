@@ -38,7 +38,7 @@ SQL_SERVER_PASSWORD= **masked**
 SQL_SERVER_DATABASE=test_node_js
 ```
 
->> 
+>> index.js
 ```javascript
 require("dotenv").config();
 
